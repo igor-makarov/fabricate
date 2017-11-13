@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require 'fabricate'
+
+require 'optparse'
+
+# This will hold the options we parse
+options = {}
+
+optparse = OptionParser.new do |parser|
+  parser.banner = "Usage: #{File.basename(__FILE__)} [options]"
+  parser.on("-v", "--verbose", TrueClass, "Output diagnosic info") do |v|
+    options[:verbose] = true
+  end
+  parser.on("-a", "--app_identifier APP_IDENTIFIER", "Application bundle ID") do |v|
+    options[:app_identifier] = v
+  end
+  parser.on("-k", "--api_key API_KEY", "Fabric API key (public)") do |v|
+    options[:api_key] = v
+  end
+  parser.on("-f", "--filename FILENAME", "File to upload)") do |v|
+    options[:filename] = v
+  end
+	parser.on("-h", "--help", "Show this help message") do
+    puts parser
+    exit 0
+  end
+end
+
+begin
+  optparse.parse!
+  mandatory = [:app_identifier, :api_key, :filename]
+  missing = mandatory.select{ |param| options[param].nil? }
+  raise OptionParser::MissingArgument.new(missing.join(', ')) unless missing.empty?
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $!.to_s
+  exit 255                                                  
+end                                                              
+
+executor = Fabricate::Fabricate.new(options)
+executor.verbose = options[:verbose] || false
+executor.run!
