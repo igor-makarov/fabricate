@@ -1,4 +1,7 @@
-# fabricate
+# (DEPRECATED) fabricate
+
+## DEPRECATION NOTICE
+Google has discontinued Fabric, and this tool no longer works.
 
 A small CLI tool that uploads dSYM files to Crashlytics without using their binary.
 Useful for running in a Linux environment, for example.
