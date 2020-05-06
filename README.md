@@ -3,6 +3,7 @@
 ## DEPRECATION NOTICE
 Google has discontinued Fabric, and this tool no longer works.
 
+## Description 
 A small CLI tool that uploads dSYM files to Crashlytics without using their binary.
 Useful for running in a Linux environment, for example.
 
@@ -19,12 +20,6 @@ Useful for running in a Linux environment, for example.
     -k, --api_key API_KEY            Fabric API key (public)
     -f, --filename FILENAME          File to upload)
     -h, --help                       Show this help message
-
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/igor-makarov/fabricate.
-
 
 ## License
 
